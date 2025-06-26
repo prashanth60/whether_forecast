@@ -1,0 +1,39 @@
+<h1>Weather Forecast</h1>
+
+<%= form_with url: forecast_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :address, "Enter Address:(e.g. Zipcode or Hyderabad)" %>
+    <%= text_field_tag :address, params[:address], placeholder: "e.g. Zipcode or Hyderabad" %>
+    <%= submit_tag "Get Forecast" %>
+  </div>
+<% end %>
+
+<% if @forecast.present? %>
+  <hr>
+
+  <h2>Forecast for: <%= @address %></h2>
+
+  <section>
+    <h3>Current Weather</h3>
+    <p><strong>Time:</strong> <%#= @forecast[:current][:time] %>
+    <%= Time.parse(@forecast[:current][:time]).strftime("%B %d, %Y %I:%M %p") %></p>
+    <p><strong>Temperature:</strong> <%= @forecast[:current][:temperature] %> °C</p>
+    <p><strong>Wind Speed:</strong> <%= @forecast[:current][:wind_speed] %> m/s</p>
+  </section>
+
+  <% if @forecast[:daily_high_low].present? %>
+    <section>
+      <h3>Today’s High & Low</h3>
+      <p><strong>High:</strong> <%= @forecast[:daily_high_low][:high] %> °C</p>
+      <p><strong>Low:</strong> <%= @forecast[:daily_high_low][:low] %> °C</p>
+    </section>
+  <% end %>
+
+  <p>
+    <em>Source: <%= @from_cache ? "Redis Cache (30 min)" : "Live API" %></em>
+  </p>
+<% elsif flash[:alert].present? %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% elsif params[:address].present? %>
+  <p style="color: orange;">No weather data found for "<%= params[:address] %>"</p>
+<% end %>
