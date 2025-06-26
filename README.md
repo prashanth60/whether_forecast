@@ -46,16 +46,21 @@ RSpec for unit testing
 
 Setup Instructions:
 
-# Clone the repo
+Clone the repo
+
 bundle install
 
-# Enable Redis caching in development
+#Enable Redis caching in developmet
+
 touch tmp/caching-dev.txt
 
-# Start Redis server (if not already running)
+Start Redis server(if not already running)
+
 redis-server
 
-# Run the app
+
+run the app
+
 bin/rails server
 
 Redis Setup in config/environments/development.rb
@@ -79,6 +84,7 @@ Forecast: https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=<lat>&l
 To Run The Tests:
 
 bundle exec rspec
+
 <------------------------------------------------------------------------------------------>
 
 
