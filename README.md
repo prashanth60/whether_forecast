@@ -67,14 +67,16 @@ config.cache_store = :redis_cache_store, {
 
 <------------------------------------------------------------------------------------------>
 
-
 API References
 
 Geocoding: https://nominatim.openstreetmap.org/search?q=<query>&format=json
 
 Forecast: https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=<lat>&lon=<lon>
 
+<------------------------------------------------------------------------------------------>
+  To Run The Tests:
 
+  bundle exec rspec
 <------------------------------------------------------------------------------------------>
 
 
